@@ -1,5 +1,8 @@
-﻿using BenchmarkDotNet.Running;
-using PerformanceTips;
-using PerformanceTips.Example;
+﻿using PerformanceTips.Example;
 
-BenchmarkRunner.Run(typeof(BusinessServiceBenchmark));
+var businessService = new BusinessService(CustomersGenerator.GenerateCustomers(10));
+
+foreach (var productName in businessService.GetCustomerProductNames("customer5"))
+{
+    Console.WriteLine(productName);
+}

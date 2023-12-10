@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace PerformanceTips.Example;
+﻿namespace PerformanceTips.Example;
 
 public class BusinessService
 {
@@ -26,67 +22,6 @@ public class BusinessService
 
         // Eliminăm duplicatatele
         var uniqueProducts = sortedProducts.Distinct().ToList();
-
-        return uniqueProducts;
-    }
-    
-    public List<string> GetCustomerProductNamesOptimized1(string customerName)
-    {
-        // Obținem o listă de produse pentru un anumit client
-        var products = new List<string>();
-
-        foreach (var customer in customers)
-        {
-            if (customer.Name.Equals(customerName, StringComparison.OrdinalIgnoreCase))
-            {
-                foreach (var order in customer.Orders)
-                {
-                    products.Add(order.Product);
-                }
-            }
-        }
-
-        // Sortăm produsele alfabetic
-        products.Sort();
-
-        // Eliminăm duplicatatele
-        var uniqueProducts = new List<string>();
-        string previousProduct = null;
-
-        foreach (var product in products)
-        {
-            if (product != previousProduct)
-            {
-                uniqueProducts.Add(product);
-                previousProduct = product;
-            }
-        }
-
-        return uniqueProducts;
-    }
-    
-    public List<string> GetCustomerProductNamesOptimized2(string customerName)
-    {
-        // Obținem o listă de produse pentru un anumit client
-        var products = new List<string>();
-
-        foreach (var customer in customers)
-        {
-            if (customer.Name == customerName)
-            {
-                foreach (var order in customer.Orders)
-                {
-                    products.Add(order.Product);
-                }
-            }
-        }
-
-        // Utilizăm HashSet pentru eliminarea duplicatelor
-        var uniqueProductsSet = new HashSet<string>(products);
-        var uniqueProducts = new List<string>(uniqueProductsSet);
-
-        // Sortăm produsele alfabetic
-        uniqueProducts.Sort();
 
         return uniqueProducts;
     }
